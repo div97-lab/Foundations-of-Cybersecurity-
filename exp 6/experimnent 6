@@ -1,0 +1,54 @@
+Experiment: Data Transformation Within the MD5 Hashing Algorithm
+
+1. Aim
+
+To study the data transformation process in the MD5 hashing algorithm and understand how input data is converted into a fixed-length hash value.
+
+2. Theory
+
+MD5 (Message Digest Algorithm 5) is a cryptographic hash function that converts input data of any length into a fixed-length 128-bit hash value, generally represented by 32 hexadecimal characters.
+
+The MD5 algorithm processes input data through several stages, including padding, appending the message length, dividing the message into blocks, and performing multiple rounds of mathematical operations.
+
+Steps involved in MD5
+
+1. Padding: Extra bits are added to the message so that its length becomes 448 modulo 512.
+2. Appending length: The original message length is appended as a 64-bit value, making the total message length a multiple of 512 bits.
+3. Initialization: Four 32-bit buffers (A, B, C and D) are initialized with predefined values.
+4. Processing: Each 512-bit block is processed through 64 operations divided into four rounds using logical functions, modular addition and left rotations.
+5. Output generation: The final values of the buffers are combined to produce a 128-bit message digest.
+
+A small change in the input generally produces a significantly different hash value. This property is known as the avalanche effect.
+
+3. Requirements
+
+- Computer or smartphone with internet access
+- Virtual Labs website
+- MD5 hashing experiment
+
+4. Procedure
+
+1. Open the Virtual Labs website.
+2. Navigate to Computer Science and Engineering → Introductory Cyber Security Lab → Experiments.
+3. Select Data Transformation within the MD5 Hashing Algorithm.
+4. Read the instructions provided on the experiment page.
+5. Enter the required input message in the designated field, if available.
+6. Execute the experiment using the provided controls.
+7. Observe the data transformation steps and the generated MD5 hash value.
+8. Change the input message slightly and execute the experiment again.
+9. Compare the generated hash values and note the differences.
+10. Record the observations and results.
+
+5. Observation
+
+The MD5 algorithm converts the input message into a fixed-length hash value of 128 bits, represented by 32 hexadecimal characters.
+
+Changing even a single character in the input generally results in a different hash value.
+
+6. Result
+
+The data transformation process of the MD5 hashing algorithm was studied. It was observed that MD5 generates a fixed-length 128-bit hash digest regardless of the input message length.
+
+7. Conclusion
+
+The experiment demonstrates the working principle of the MD5 hashing algorithm and the effect of input changes on the generated hash value. However, MD5 is considered cryptographically insecure and should not be used for modern security-sensitive applications.
