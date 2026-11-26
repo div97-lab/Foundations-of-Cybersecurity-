@@ -1,0 +1,124 @@
+Cryptographic Hash Function Properties
+
+A Cyber Security lab experiment performed using "Virtual Labs (vLabs)" (https://ics-amrt.vlabs.ac.in/exp/cryptographic-hash-properties/index.html) to study cryptographic hash functions and understand their role in data integrity and security.
+
+Virtual Labs Experiment
+
+Experiment Link: https://ics-amrt.vlabs.ac.in/exp/cryptographic-hash-properties/index.html
+
+Aim
+
+To study the properties of cryptographic hash functions and understand their role in ensuring data integrity and security.
+
+Requirements
+
+- Computer with internet access
+- Web browser
+- Virtual Labs website
+
+Theory
+
+A cryptographic hash function is a mathematical algorithm that converts an input of arbitrary length into a fixed-length output called a hash value or message digest.
+
+Cryptographic hash functions are used in password verification, digital signatures, file integrity checking, and other security applications.
+
+Properties of Cryptographic Hash Functions
+
+1. Pre-image Resistance
+
+Given a hash value "h(x)", it should be computationally infeasible to determine the original input "x".
+
+2. Second Pre-image Resistance
+
+Given an input "x1" and its hash, it should be computationally infeasible to find a different input "x2" such that:
+
+"h(x1) = h(x2)"
+
+3. Collision Resistance
+
+It should be computationally infeasible to find any two distinct inputs "x1" and "x2" that produce the same hash value.
+
+Common Hashing Algorithms
+
+Algorithm| Hash Length| Security Status
+MD5| 128 bits| Insecure against collisions
+SHA-1| 160 bits| Insecure against collisions
+SHA-256| 256 bits| Widely used for secure hashing
+
+Procedure
+
+A. Hashing
+
+1. Open the "Cryptographic Hash Function Properties experiment" (https://ics-amrt.vlabs.ac.in/exp/cryptographic-hash-properties/index.html).
+2. Select the Hashing option from the left panel.
+3. Enter a message in the input box.
+4. Select a hashing algorithm, such as SHA-256.
+5. Generate the hash value and observe the output.
+6. Change the input message and generate its hash again.
+7. Compare the hash values obtained.
+
+B. Pre-image Resistance
+
+1. Select the Pre-image option.
+2. Click on Generate Hash to obtain the hash of a hidden input.
+3. Try to guess the original input.
+4. Click Submit Guess to verify the guess.
+5. Observe whether the guessed input produces the required hash.
+
+C. Second Pre-image Resistance
+
+1. Select the Second Pre-image option.
+2. Observe the original input and its hash value.
+3. Enter a different input.
+4. Click Check Match.
+5. Observe whether the hash values match.
+
+D. Collision Resistance
+
+1. Select the Collision Resistance option.
+2. Choose a hashing algorithm, such as SHA-256.
+3. Enter an original message and generate its hash.
+4. Enter a different message and generate its hash.
+5. Compare both hash values and observe the result.
+
+Observations
+
+S. No.| Property| Observation
+1| Hashing| A fixed-length hash is generated for the input message.
+2| Pre-image resistance| Recovering the original input from its hash is computationally difficult.
+3| Second pre-image resistance| A different input generally produces a different hash value.
+4| Collision resistance| Finding two different inputs with the same hash is computationally infeasible for a secure hash function.
+
+Note: These are expected observations. Actual inputs and outputs should be recorded from the Virtual Labs simulation.
+
+Result
+
+The experiment demonstrated the working of cryptographic hash functions and their important properties: pre-image resistance, second pre-image resistance, and collision resistance. These properties help protect data integrity and support secure communication and authentication systems.
+
+Applications
+
+- Password verification and authentication
+- File integrity verification
+- Digital signatures and certificates
+- Blockchain technology
+- Detection of unauthorized data modifications
+
+Precautions
+
+1. Use the same hashing algorithm when comparing hash values.
+2. Enter messages carefully and record the exact inputs.
+3. Do not confuse hashing with encryption; hashing is designed as a one-way operation.
+4. Prefer secure algorithms such as SHA-256 for appropriate integrity-checking applications.
+
+References
+
+- "Virtual Labs — Cryptographic Hash Function Properties" (https://ics-amrt.vlabs.ac.in/exp/cryptographic-hash-properties/index.html)
+- "NIST — Secure Hash Standard (FIPS 180-4)" (https://csrc.nist.gov/pubs/fips/180-4/upd1/final)
+
+---
+
+Domain: Cyber Security
+
+Experiment: Cryptographic Hash Function Properties
+
+Platform: Virtual Labs
