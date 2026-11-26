@@ -1,0 +1,46 @@
+*DATE: 03/11/26 | EXP. No. 10*
+*Experiment:* To implement a basic key logger in C to read keyboard input, display characters with their ASCII values and store the user-entered text data in a file (text / Word compatible).
+
+*Tools Required:*
+- Kali Linux Operating System
+- GCC Compiler
+- C Programming Language
+- Nano Text Editor
+- LibreOffice Writer (to view the generated document)
+
+*Theory:*
+A key logger is a program or device that records the keys pressed on a keyboard. It records the keyboard input, converts each character to its ASCII value and can store the input in a file.
+
+*Types of Key Loggers:*
+- *Software Key Logger:* A program that records keyboard input through software.
+- *Hardware Key Logger:* A physical device connected between a keyboard and a computer to record keystrokes.
+
+*Working Principle:*
+User Types a Key -> OS Processes Input -> C Program Reads the Input -> Displays Character + ASCII Value -> Stores Input in File
+
+*Important Functions:*
+Function	Purpose
+getchar()	Read a character from input
+printf()	Displays output on the screen
+fopen()	Opens or creates a file
+fputc()	Writes a character into a file
+fclose()	Closes the file
+tcgetattr()	Gets terminal settings
+tcsetattr()	Changes terminal settings
+read()	Reads input from a file descriptor
+*Programs in this Experiment:*
+
+*Program 1: Basic Input using getchar()*
+Reads characters using `getchar()` and displays each character with its ASCII value. Runs till Enter or EOF.
+
+*Program 2: Reading Input in Raw mode using termios*
+Uses `termios` to put the terminal in raw mode (no Enter needed, no echo). Reads each key instantly using `read()` and shows Key + ASCII. Pressing ESC (ASCII 27) stops the program and restores terminal settings.
+
+*Program 3: Saving Text Input to a Text File*
+Same as Program 1, but every typed character is also saved into `keylog.txt` using `fopen()` / `fputc()`.
+
+*Program 4: Main Program - Basic key logger with RTF output*
+Captures typed keys in raw mode, stores them in an array, then saves them into an RTF file `captured_keys.rtf`, which can be opened in LibreOffice Writer or Microsoft Word.
+
+*Result:* The experiment was successfully performed. A basic key logger was implemented in C to read keyboard input, display ASCII values and store the user-entered text data in both a text file and Word compatible (RTF) file.
+
