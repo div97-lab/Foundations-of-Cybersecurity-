@@ -1,0 +1,49 @@
+
+
+*DATE: 29/10/26 | EXP. No. 9*
+*Experiment:* To capture and analyze the network traffic of Instagram using Wireshark and inspect website cookies using the Cookies Editor Extension. Also, to understand cookie security properties and measures to prevent cookie-grabbing (session hijacking) attacks.
+
+*Tools / Requirements:*
+- Wireshark (Network Protocol Analyzer)
+- Google Chrome (Browser)
+- Cookie Editor (Chrome Extension)
+- Active Internet Connection (Wi-Fi)
+
+*Theory:*
+1. A Cookie is a small piece of data stored by a website in the browser to maintain a user's session, preferences and login details.
+2. A session cookie contains a session ID that keeps the user logged in.
+3. Cookie-grabbing (session hijacking) is an attack in which a stolen cookie is reused to gain unauthorized access to a user's account.
+4. Websites like Instagram use HTTPS (TLS) to encrypt the communication, so cookies and login data are not visible in plain text during packet capture.
+
+*Procedure (Steps Performed):*
+- Open Wireshark and select the Wi-Fi interface, then start capturing packets.
+- Open Google Chrome and visit https://www.instagram.com and log in.
+- Download and install the "Cookies Editor" extension from the Chrome Web Store, then open it from the Extensions menu.
+- Inspect Instagram cookie (e.g. mid) and view their properties (domain, expiry, secure, HttpOnly etc.).
+- In Wireshark apply the filter `tls` to analyze the TLS handshake (client hello) and identify the SNI (gateway.instagram.com).
+- Apply the filter `dns` to view DNS queries and responses for Instagram.
+- Apply the filter `http.cookie` to check the HTTP cookie packets.
+- Stop the capture and note the observations.
+
+*Cookie Security Attributes:*
+- *Secure:* Cookie is sent only over HTTPS (encrypted connection).
+- *HttpOnly:* Prevents access to the cookie via JavaScript (e.g. http://document.cookie)
+- *SameSite:* Controls whether the cookie is sent with cross-site requests.
+- *Expiration:* Specifies the validity period of the cookie.
+
+*Observations:*
+1. *Wireshark - Live Packet Capture:* Live network packets are captured on the Wi-Fi interface.
+2. *Instagram Login Page:* Instagram website is opened and login credentials are entered to access the account.
+3. *Cookies Editor - Cookie Inspection:* Cookie "mid" of Instagram is viewed with its properties (domain, expiry, secure, etc.).
+4. *TLS Handshake Analysis:* TLS handshake is captured showing client Hello with SNI = http://gateway.instagram.com.
+5. *DNS Query and Response:* DNS queries and responses are shown for http://www.instagram.com, indicating domain resolution.
+6. *HTTP Cookie Filter:* No packets are displayed, which confirms that Instagram uses HTTPS, so cookies are encrypted and not visible in plain text.
+
+*Defensive Measures (Prevention):*
+- Use HTTPS (TLS) to encrypt all communication.
+- Enable Secure and HttpOnly flags for cookies.
+- Configure the SameSite attribute to restrict cross-site requests.
+- Use short session expiry (limited lifetime for cookies).
+- Invalidate the session after logout.
+
+*Result:* The network traffic of Instagram was successfully captured and analyzed using Wireshark. The cookies were inspected using the Cookies Editor and their security attributes (Secure, HttpOnly, SameSite, Expiration) were examined. The analysis showed that Instagram uses HTTPS (TLS) encryption, and no HTTP cookie packets were found which protects cookies and login credentials from being exposed, thereby reducing the risk of cookie-grabbing (session hijacking) attacks.
