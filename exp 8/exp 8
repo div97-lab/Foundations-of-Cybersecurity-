@@ -1,0 +1,101 @@
+DATE: 22/10/26*
+
+Experiment - To install and configure Snort as an Intrusion Detection System (IDS), create a custom detection rule, generate test network traffic and analyze the alerts produced by Snort.
+
+*Requirements -* Kali Linux Virtual Machine, VirtualBox, Snort 3 and Administrator privileges.
+
+*Theory -* An Intrusion Detection System (IDS) monitors network traffic to detect suspicious activities and generates alerts when predefined rules match the traffic.
+
+Snort is an open source network security tool used for real time traffic analysis and intrusion detection.
+
+*Types of IDS:*
+- *Network Based IDS (NIDS) -* Monitors packets travelling through a network to detect suspicious traffic.
+- *Host Based IDS (HIDS) -* Monitors activities on an individual computer, such as files, processes, and system logs.
+
+*Procedure:*
+
+*1) Install and Verify Snort*
+sudo apt update
+sudo apt install snort -y
+snort -V
+*Commands:*
+- `sudo`: executes commands with administrator privileges.
+- `apt update`: updates the package list.
+- `sudo install snort -y`: installs snort and automatically confirms installation
+- `snort -V`: displays the installed Snort version.
+
+*2) Identify the Network Interface*
+ip -br addr
+ip route
+*Commands:*
+- `ip -br addr`: displays network interfaces and their IP addresses in brief format.
+- `ip route`: displays routing information and the default gateway.
+
+*3) Create a custom rule*
+mkdir -p ~/snort-lab
+cd ~/snort-lab
+nano local.rules
+*Commands:*
+- `mkdir -p`: creates the lab directory.
+- `cd`: changes the current directory
+- `nano`: opens the rule file in a text editor.
+
+*Enter the following rule in http://local.rules:*
+alert icmp any any -> any any (msg:"LAB: ICMP traffic detected"; sid:1000001; rev:1;)
+*Explanation of the rule:*
+- `alert`: generates an alert when the rule matches.
+- `icmp`: monitors ICMP traffic, commonly used by the ping command.
+- `any any`: matches the source/destination IP address and source/destination port.
+- `->`: specifies the traffic direction.
+- `msg`: defines the alert message.
+- `sid:1000001`: assigns a unique identifier to the custom rule.
+- `rev:1`: specifies the rule revision number.
+
+*4) Validate the configuration*
+sudo snort -T -c /etc/snort/snort.lua
+*Commands:*
+- `-T`: tests the configuration.
+- `-c`: specifies the configuration file.
+
+*5) Start the Snort in IDS Mode*
+sudo snort -q -c /etc/snort/snort.lua -R /home/kali/snort-lab/local.rules -i eth0 -A alert_fast
+*Commands:*
+- `-q`: suppresses startup messages.
+- `-c`: loads the configuration file.
+- `-R`: loads the custom rule file.
+- `-i`: selects the network interface.
+- `-A alert_fast`: displays alerts in a concise format.
+
+*6) Generate Test Traffic*
+Open another terminal and execute:
+ping -c 4 10.0.2.2
+*Commands:*
+- `ping`: test network connectivity using ICMP.
+- `-c 4`: sends four ping requests.
+- `10.0.2.2`: example gateway address, replace it with your actual lab gateway if required.
+
+*7) Analyse Alerts*
+Observe the Snort terminal for the message:
+`LAB: ICMP traffic detected`
+The alert provides information about the matching rule, protocol, and source and destination IP addresses.
+
+*8) Save and View Alerts*
+sudo snort -q -c /etc/snort/snort.lua -R /home/kali/snort-lab/local.rules -i eth0 -A alert_fast 2>&1 | tee ~/snort-lab/alerts.log
+*Commands:*
+- `2>&1`: combines error output with standard output.
+- `|`: sends the output to the next command.
+- `tee`: displays the output and saves it to http://alerts.log
+
+Generate test traffic in the second terminal, then view the saved alerts:
+cat ~/snort-lab/alerts.log
+*Commands:*
+- `cat`: displays the contents of the log file.
+- `Ctrl+C`: stops the running Snort process.
+
+*Result -* Snort was configured as an IDS, a custom ICMP rule was created, test network traffic was generated, and the resulting alerts were analyzed.
+
+*Precautions -*
+1) Use only authorized networks.
+2) Verify the interface and gateway before testing.
+3) Validate the configuration before monitoring.
+4) Remember that an alert does not necessarily indicate an attack.
